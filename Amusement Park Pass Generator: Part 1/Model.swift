@@ -8,20 +8,23 @@
 
 import Foundation
 
-protocol Entrant {
+protocol AreaAccess {
+    func areasAccess() -> AreaAccessType
+}
+
+protocol RideAccess {
+    func rideAccess() -> RideAccessType
+}
+
+protocol DiscountAccess {
+    func discountAccess() -> DiscountAccessType
+}
+
+protocol Entrant: AreaAccess, RideAccess, DiscountAccess {
     
 }
 
 protocol FullyNamed {
-    var firstName: String { get }
-    var lastName: String { get }
-    var streetAddress: String { get }
-    var city: String { get }
-    var state: String { get }
-    var zipCode: Int { get }
-}
-
-protocol PartiallyNamed {
     var firstName: String? { get }
     var lastName: String? { get }
     var streetAddress: String? { get }
@@ -31,25 +34,25 @@ protocol PartiallyNamed {
     var dateOfBirth: String? { get }
 }
 
-class Staff: FullyNamed {
-    var firstName: String
-    var lastName: String
-    var streetAddress: String
-    var city: String
-    var state: String
-    var zipCode: Int
-    
-    init(firstName: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: Int) {
-        self.firstName = firstName
-        self.lastName = lastName
-        self.streetAddress = streetAddress
-        self.city = city
-        self.state = state
-        self.zipCode = zipCode
-    }
+struct AreaAccessType {
+    var amusementArea: Bool
+    var kitchenArea: Bool
+    var rideControl: Bool
+    var maintenanceArea: Bool
+    var officeArea: Bool
 }
 
-class Guest: PartiallyNamed {
+struct RideAccessType {
+    var all: Bool
+    var skipAll: Bool
+}
+
+struct DiscountAccessType {
+    var foodDiscount: Int?
+    var merchandiseDiscount: Int?
+}
+
+struct Person: FullyNamed {
     var firstName: String?
     var lastName: String?
     var streetAddress: String?
@@ -61,6 +64,63 @@ class Guest: PartiallyNamed {
 
 
 
-enum EntrantType: Entrant {
-    case ClassicGuest, VIPGuest, ChildGuest, HourlyEmployeeFood, HourlyEmployeeRide, HourlyEmployeeMaintenance, Manager
+enum Guest: Entrant {
+    case Classic, VIP, Child
+    func areasAccess() -> AreaAccessType {
+        return AreaAccessType(amusementArea: true, kitchenArea: false, rideControl: false, maintenanceArea: false, officeArea: false)
+    }
+    
+    func rideAccess() -> RideAccessType {
+        switch self {
+        case .Classic, .Child:
+            return RideAccessType(all: true, skipAll: false)
+        case .VIP:
+            return RideAccessType(all: true, skipAll: true)
+        }
+        
+    }
+    func discountAccess() -> DiscountAccessType {
+        switch self {
+        case .Classic, .Child:
+            return DiscountAccessType(foodDiscount: nil, merchandiseDiscount: nil)
+        case .VIP:
+            return DiscountAccessType(foodDiscount: 10, merchandiseDiscount: 20)
+        }
+    }
+    
 }
+
+enum Employee: Entrant {
+    case Food, Ride, Maintenance, Manager
+    func areasAccess() -> AreaAccessType {
+    switch self {
+    case .Food, Ride:
+        return AreaAccessType(amusementArea: true, kitchenArea: false, rideControl: true, maintenanceArea: false, officeArea: false)
+    
+    case .Maintenance:
+        return AreaAccessType(amusementArea: true, kitchenArea: true, rideControl: true, maintenanceArea: true, officeArea: false)
+    case .Manager:
+        return AreaAccessType(amusementArea: true, kitchenArea: true, rideControl: true, maintenanceArea: true, officeArea: true)
+    
+        }
+    
+    }
+    
+    func rideAccess() -> RideAccessType {
+        switch self {
+        case .Food, .Ride, .Maintenance, .Manager:
+            return RideAccessType(all: true, skipAll: true)
+        }
+    }
+    
+    func discountAccess() -> DiscountAccessType {
+        switch self {
+        case .Food, .Ride, .Maintenance:
+            return DiscountAccessType(foodDiscount: 15, merchandiseDiscount: 25)
+        case .Manager:
+            return DiscountAccessType(foodDiscount: 25, merchandiseDiscount: 25)
+        }
+    }
+
+}
+

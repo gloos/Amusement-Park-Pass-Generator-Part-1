@@ -9,8 +9,16 @@
 import Foundation
 
 class PassGenerator {
-    func generatePass(type: EntrantType, ) {
-        
+
+    let entrant: Person
+    
+    init(entrant: Person) {
+        self.entrant = entrant
     }
+    
+    func printStuff() {
+        print(entrant)
+    }
+
     
 }
