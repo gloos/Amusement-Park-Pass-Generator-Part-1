@@ -60,6 +60,7 @@ struct Person: FullyNamed {
     var state: String?
     var zipCode: Int?
     var dateOfBirth: String?
+
 }
 
 

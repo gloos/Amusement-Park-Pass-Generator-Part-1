@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4E174A211D58D14B00513779 /* PassGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E174A201D58D14B00513779 /* PassGenerator.swift */; };
+		4E1947691D59315D00545CF2 /* ErrorTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1947681D59315D00545CF2 /* ErrorTypes.swift */; };
 		4E879D141D58A33D0050869B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E879D131D58A33D0050869B /* AppDelegate.swift */; };
 		4E879D161D58A33D0050869B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E879D151D58A33D0050869B /* ViewController.swift */; };
 		4E879D191D58A33D0050869B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E879D171D58A33D0050869B /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		4E174A201D58D14B00513779 /* PassGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassGenerator.swift; sourceTree = "<group>"; };
+		4E1947681D59315D00545CF2 /* ErrorTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorTypes.swift; sourceTree = "<group>"; };
 		4E879D101D58A33D0050869B /* Amusement Park Pass Generator: Part 1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Amusement Park Pass Generator: Part 1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E879D131D58A33D0050869B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E879D151D58A33D0050869B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				4E879D281D58A40E0050869B /* Model.swift */,
+				4E1947681D59315D00545CF2 /* ErrorTypes.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 			files = (
 				4E174A211D58D14B00513779 /* PassGenerator.swift in Sources */,
 				4E879D291D58A40E0050869B /* Model.swift in Sources */,
+				4E1947691D59315D00545CF2 /* ErrorTypes.swift in Sources */,
 				4E879D161D58A33D0050869B /* ViewController.swift in Sources */,
 				4E879D141D58A33D0050869B /* AppDelegate.swift in Sources */,
 			);

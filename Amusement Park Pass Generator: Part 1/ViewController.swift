@@ -13,9 +13,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let person = Person(firstName: "Hi", lastName: "Hi", streetAddress: "Hi", city: "Hi", state: "Hi", zipCode: 41515, dateOfBirth: "hhod", type: Guest.Child)
-        let test = PassGenerator(entrant: person)
+        let person = Person(firstName: "John", lastName: "Doe", streetAddress: "10 Downing Street", city: "London", state: "England", zipCode: nil, dateOfBirth: nil)
+        let test = PassGenerator(entrant: person, entrantType: Guest.Child)
         test.printStuff()
+        do {
+            try test.verifyDataIntegrity()
+        } catch let error {
+            print(error)
+        }
 
     }
 

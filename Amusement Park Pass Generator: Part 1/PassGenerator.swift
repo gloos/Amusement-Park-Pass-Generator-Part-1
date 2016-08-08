@@ -11,14 +11,51 @@ import Foundation
 class PassGenerator {
 
     let entrant: Person
+    let entrantType: Entrant
+
     
-    init(entrant: Person) {
+    init(entrant: Person, entrantType: Entrant) {
         self.entrant = entrant
+        self.entrantType = entrantType
+    }
+    
+    func verifyDataIntegrity() throws {
+        switch self.entrantType {
+        case Guest.Child:
+            guard self.entrant.dateOfBirth != nil else {
+                throw DataIntegrity.MissingDateOfBirth
+            }
+        case Guest.Classic, Guest.VIP:
+            print("We don't need information")
+        case is Employee:
+            guard self.entrant.firstName != nil else {
+                throw DataIntegrity.MissingFirstName
+            }
+            guard self.entrant.lastName != nil else {
+                throw DataIntegrity.MissingLastName
+            }
+            guard self.entrant.streetAddress != nil else {
+                throw DataIntegrity.MissingAddress
+            }
+            guard self.entrant.state != nil else {
+                throw DataIntegrity.MissingAddress
+            }
+            guard self.entrant.city != nil else {
+                throw DataIntegrity.MissingCity
+            }
+            guard self.entrant.zipCode != nil else {
+                throw DataIntegrity.MissingZipCode
+            }
+        default:
+            print("Default called")
+        }
     }
     
     func printStuff() {
-        print(entrant)
+        print(entrant, entrantType)
     }
+    
+
 
     
 }
