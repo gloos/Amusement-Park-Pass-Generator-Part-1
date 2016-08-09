@@ -24,9 +24,19 @@ class ViewController: UIViewController {
 
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    //MARK: Swiping methods
+    
+    //There is no need to swipe at Amusement Areas as everybody has access. There is no need to create more methods right now as they would all look the same
+    
+    func swipeAtKitchen(pass: PassGenerator) {
+        switch pass.entrantType {
+        case is Guest:
+            print("The user cannot access this area")
+        case Employee.Ride:
+            print("This employee cannot access this area")
+        default:
+            print("Employee allowed through")
+        }
     }
 
 
