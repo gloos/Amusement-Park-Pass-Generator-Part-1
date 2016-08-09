@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import AudioToolbox
 
 class ViewController: UIViewController {
+    var sound: SystemSoundID = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,13 +34,16 @@ class ViewController: UIViewController {
         switch pass.entrantType {
         case is Guest:
             print("The user cannot access this area")
+            playDeniedAccessSound()
             if let dob = pass.entrant.dateOfBirth where compareDates(dob) == true {
-                print("It is the entrant's birthday!!")
+                print("You can't access, but happy birthday anyway")
             }
         case Employee.Ride:
+            playDeniedAccessSound()
             print("This employee cannot access this area")
         default:
             print("Employee allowed through")
+            playGrantedAccessSound()
             if let dob = pass.entrant.dateOfBirth where compareDates(dob) == true {
                 print("It is the entrant's birthday!!")
             }
@@ -60,6 +65,23 @@ class ViewController: UIViewController {
         let today = NSDate()
         return NSCalendar.currentCalendar().isDate(today, equalToDate: date, toUnitGranularity: [.Day, .Month])
     }
+    
+    func playGrantedAccessSound() {
+        self.sound = 0
+        let pathToSoundFile = NSBundle.mainBundle().pathForResource("grantedAccess", ofType: "wav")
+        let soundURL = NSURL(fileURLWithPath: pathToSoundFile!)
+        AudioServicesCreateSystemSoundID(soundURL, &self.sound)
+        AudioServicesPlaySystemSound(self.sound)
+        
+    }
 
+    func playDeniedAccessSound() {
+        self.sound = 0
+        let pathToSoundFile = NSBundle.mainBundle().pathForResource("dniedAccess", ofType: "wav")
+        let soundURL = NSURL(fileURLWithPath: pathToSoundFile!)
+        AudioServicesCreateSystemSoundID(soundURL, &self.sound)
+        AudioServicesPlaySystemSound(self.sound)
+        
+    }
 }
 
