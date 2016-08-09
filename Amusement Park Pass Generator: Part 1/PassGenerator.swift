@@ -19,6 +19,9 @@ class PassGenerator {
         self.entrantType = entrantType
     }
     
+    
+  
+    
     func verifyDataIntegrity() throws {
         switch self.entrantType {
         case Guest.Child:
@@ -51,7 +54,7 @@ class PassGenerator {
         }
     }
     
-    func printStuff() {
+    func printEntrant() {
         print(entrant, entrantType)
     }
     

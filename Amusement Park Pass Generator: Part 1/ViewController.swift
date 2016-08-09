@@ -14,16 +14,17 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        // Here we create the pass based on the information filled in project 5
         let person = Person(firstName: "John", lastName: "Doe", streetAddress: "10 Downing Street", city: "London", state: "England", zipCode: 5451, dateOfBirth: twoDaysAgo())
-        let test = PassGenerator(entrant: person, entrantType: Guest.Child)
-        test.printStuff()
+       // let person2 = Person(firstName: "Tom", lastName: "Mennard", streetAddress: "home", city: "Beijing", state: "China", zipCode: 1234, dateOfBirth: NSDate())
+        let pass = PassGenerator(entrant: person, entrantType: Guest.Child)
+        pass.printEntrant()
         do {
-            try test.verifyDataIntegrity()
+            try pass.verifyDataIntegrity()
         } catch let error {
             print(error)
         }
-        swipeAtKitchen(test)
+        swipeAtKitchen(pass)
     }
 
     //MARK: Swiping methods
@@ -54,7 +55,7 @@ class ViewController: UIViewController {
 
     
     //MARK: Helper methods
-    
+    // Extra credit #1
     // This method serves no purpose other than testing the birthday celebration logic. When creating a person object, you can either supply NSDate() or twoDaysAgo() to see whether the logic works. This is force unwrapped but ¯\_(ツ)_/¯
     func twoDaysAgo() -> NSDate {
     let calendar = NSCalendar.currentCalendar()
@@ -66,6 +67,8 @@ class ViewController: UIViewController {
         return NSCalendar.currentCalendar().isDate(today, equalToDate: date, toUnitGranularity: [.Day, .Month])
     }
     
+    
+    //Extra credit #2
     func playGrantedAccessSound() {
         self.sound = 0
         let pathToSoundFile = NSBundle.mainBundle().pathForResource("grantedAccess", ofType: "wav")
