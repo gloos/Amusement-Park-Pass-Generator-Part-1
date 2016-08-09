@@ -31,7 +31,7 @@ protocol FullyNamed {
     var city: String? { get }
     var state: String? { get }
     var zipCode: Int? { get }
-    var dateOfBirth: String? { get }
+    var dateOfBirth: NSDate? { get }
 }
 
 struct AreaAccessType {
@@ -59,7 +59,7 @@ struct Person: FullyNamed {
     var city: String?
     var state: String?
     var zipCode: Int?
-    var dateOfBirth: String?
+    var dateOfBirth: NSDate?
 
 }
 
