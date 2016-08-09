@@ -16,8 +16,18 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Here we create the pass based on the information filled in project 5
         let person = Person(firstName: "John", lastName: "Doe", streetAddress: "10 Downing Street", city: "London", state: "England", zipCode: 5451, dateOfBirth: twoDaysAgo())
-       // let person2 = Person(firstName: "Tom", lastName: "Mennard", streetAddress: "home", city: "Beijing", state: "China", zipCode: 1234, dateOfBirth: NSDate())
         let pass = PassGenerator(entrant: person, entrantType: Employee.Manager)
+//        let person = Person(firstName: "Tom", lastName: "Mennard", streetAddress: "home", city: "Beijing", state: "China", zipCode: 1234, dateOfBirth: NSDate())
+//       let pass = PassGenerator(entrant: person, entrantType: Employee.Ride)
+//        
+//         let person = Person(firstName: "Bill", lastName: "Mennor", streetAddress: "Headlam Street", city: "London", state: "England", zipCode: 90210, dateOfBirth: NSDate())
+//        let pass = PassGenerator(entrant: person, entrantType: Employee.Maintenance)
+//        
+//         let person = Person(firstName: "Thomas", lastName: "Shelby", streetAddress: "no idea", city: "Birmingham", state: "England", zipCode: 12345, dateOfBirth: twoDaysAgo())
+//        let pass = PassGenerator(entrant: person, entrantType: Guest.VIP)
+//        
+//         let person = Person(firstName: "Ben", lastName: "Bennerson", streetAddress: "Melbourne Road", city: "London", state: "England", zipCode: 1234897445, dateOfBirth: NSDate())
+//        let pass = PassGenerator(entrant: person, entrantType: Guest.Classic)
         pass.printEntrant()
         do {
             try pass.verifyDataIntegrity()
