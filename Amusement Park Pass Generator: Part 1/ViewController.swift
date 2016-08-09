@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         // Here we create the pass based on the information filled in project 5
         let person = Person(firstName: "John", lastName: "Doe", streetAddress: "10 Downing Street", city: "London", state: "England", zipCode: 5451, dateOfBirth: twoDaysAgo())
        // let person2 = Person(firstName: "Tom", lastName: "Mennard", streetAddress: "home", city: "Beijing", state: "China", zipCode: 1234, dateOfBirth: NSDate())
-        let pass = PassGenerator(entrant: person, entrantType: Guest.Child)
+        let pass = PassGenerator(entrant: person, entrantType: Employee.Manager)
         pass.printEntrant()
         do {
             try pass.verifyDataIntegrity()
@@ -71,7 +71,7 @@ class ViewController: UIViewController {
     //Extra credit #2
     func playGrantedAccessSound() {
         self.sound = 0
-        let pathToSoundFile = NSBundle.mainBundle().pathForResource("grantedAccess", ofType: "wav")
+        let pathToSoundFile = NSBundle.mainBundle().pathForResource("AccessGranted", ofType: "wav")
         let soundURL = NSURL(fileURLWithPath: pathToSoundFile!)
         AudioServicesCreateSystemSoundID(soundURL, &self.sound)
         AudioServicesPlaySystemSound(self.sound)
@@ -80,7 +80,7 @@ class ViewController: UIViewController {
 
     func playDeniedAccessSound() {
         self.sound = 0
-        let pathToSoundFile = NSBundle.mainBundle().pathForResource("dniedAccess", ofType: "wav")
+        let pathToSoundFile = NSBundle.mainBundle().pathForResource("AccessDenied", ofType: "wav")
         let soundURL = NSURL(fileURLWithPath: pathToSoundFile!)
         AudioServicesCreateSystemSoundID(soundURL, &self.sound)
         AudioServicesPlaySystemSound(self.sound)
